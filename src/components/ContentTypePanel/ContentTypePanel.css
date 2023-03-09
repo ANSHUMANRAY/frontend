@@ -1,0 +1,41 @@
+.contentTypePanelContainer {
+    width: 20%;
+    background-color: aliceblue;
+    flex-direction: column;
+    align-items: center;
+    gap: 3%;
+}
+
+.contentTypePanelHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
+    align-items: center;
+}
+
+.contentTypePanelHeader > img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.NewType {
+    width: 90%;
+    color: blue;
+    font-weight: bold;
+    border: 2px dotted blue;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+    padding: 5%;
+}
+
+.contentType {
+    width: 90%;
+    color: black;
+    font-weight: bold;
+    padding: 5%;
+    background-color: white;
+    margin: 5px auto;
+    border-radius: 10px;
+}
