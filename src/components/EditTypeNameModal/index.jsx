@@ -34,7 +34,7 @@ export default function EditTypeNameModal(props) {
   return (
     <div className="editTypeNameModalContainerOut">
       <div className="editTypeNameModalContainer">
-        <h1>Create a new content type</h1>
+        <h1>Rename content type</h1>
         <div className='editTypeNameModalContent'>
           <label htmlFor="name">Edit the name of the field</label>
           <br/>

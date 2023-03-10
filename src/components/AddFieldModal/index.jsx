@@ -30,7 +30,7 @@ export default function AddFieldModal(props) {
   return (
     <div className="addFieldModalContainerOut">
       <div className="addFieldModalContainer">
-        <h1>Create a new content type</h1>
+        <h1>Create a new Field</h1>
         <div className='addFieldModalContent'>
           <label htmlFor="name">Name of the new field</label>
           <br/>

@@ -45,16 +45,18 @@ export default function ContentType(props) {
       {selectedType.fields.map((field, index) => {
         return (
           <div key={index} className='field'>
-            <div className='fieldName'>
+            <div>
               <h1 className='tag'>Ab</h1>
+            </div>
+            <div>
               <h2>{field}</h2>
             </div>
-            <div className='fieldRest'>
+            <div>
               <h2>Text</h2>
-              <div className='fieldButtons'>
-                <img onClick={()=>handleEdit(field)} src={editImage} alt='editImage' />
-                <img onClick={()=>handleDelete(field)} src={deleteImage} alt='deleteImage' />
-              </div>
+            </div>
+            <div className='fieldButtons'>
+              <img onClick={()=>handleEdit(field)} src={editImage} alt='editImage' />
+              <img onClick={()=>handleDelete(field)} src={deleteImage} alt='deleteImage' />
             </div>
           </div>
         );

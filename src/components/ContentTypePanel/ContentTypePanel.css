@@ -49,4 +49,9 @@
     width: 100%;
     height: 75vh;
     overflow: auto;
+    cursor: pointer;
+}
+
+.contentType:focus {
+    background-color: lightblue;
 }
