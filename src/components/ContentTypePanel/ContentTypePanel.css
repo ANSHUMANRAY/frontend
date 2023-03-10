@@ -1,9 +1,11 @@
 .contentTypePanelContainer {
-    width: 20%;
+    width: 30%;
     background-color: aliceblue;
     flex-direction: column;
     align-items: center;
     gap: 3%;
+    height: 90vh;
+    overflow: auto;
 }
 
 .contentTypePanelHeader {
@@ -31,6 +33,8 @@
 }
 
 .contentType {
+    display: flex;
+    justify-content: space-between;
     width: 90%;
     color: black;
     font-weight: bold;
@@ -38,4 +42,11 @@
     background-color: white;
     margin: 5px auto;
     border-radius: 10px;
+    overflow: auto;
+}
+
+.contentTypes {
+    width: 100%;
+    height: 75vh;
+    overflow: auto;
 }

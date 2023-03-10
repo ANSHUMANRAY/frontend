@@ -1,0 +1,80 @@
+.collectionsContainer {
+  background-color: aliceblue;
+  width: 100%;
+  height: 90vh;
+}
+
+.collectionHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
+    align-items: center;
+}
+
+/* .collectionBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 3%;
+}
+
+.collectionBodyHeader{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+} */
+
+/* .collectionBodyContent{
+    width: 100%;
+}
+
+.collectionBodyContentItem{
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px auto;
+    align-items: center;
+} */
+
+table{
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+}
+td{
+    padding: 5px;
+}
+
+th{
+    text-align: left;
+    padding: 5px;
+}
+
+.collectionBodyContentItem{
+    background-color: white;
+    margin: 5px auto;
+    border: 10px solid aliceblue;
+    border-radius: 50%;
+}
+
+.collectionBodyContentItemActions{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px auto;
+    align-items: center;
+}

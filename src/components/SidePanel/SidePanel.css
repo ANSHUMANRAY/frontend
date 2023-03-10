@@ -7,9 +7,13 @@
 }
 
 .sidePanelHeader {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 5%;
+    align-items: center;
     background-color: purple;
     text-align: center;
-    padding: 1rem;
+    height: 10%;
 }
 
 .collectionTypesHeader {
@@ -45,4 +49,9 @@ p {
     font-size: 1.5rem;
     font-weight: bold;
     padding-left: 5%;
+}
+
+.collectionTypes {
+    max-height: 50vh;
+    overflow-y: scroll;
 }

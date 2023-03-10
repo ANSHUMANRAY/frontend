@@ -4,7 +4,15 @@ import './SidePanel.css';
 import searchImage from '../../assets/searchImage.png';
 
 export default function SidePanel(props) {
-  const { contentTypes, setSelectedType } = props;
+  const { contentTypes, setCollectionVisibility, collectionVisibility, setSelectedCollection } = props;
+  const handleContentTypeBuilder = () => {
+    setCollectionVisibility(false);
+  };
+  const handleCollection = (type) => {
+    setCollectionVisibility(true);
+    setSelectedCollection(type);
+  };
+  const bColor = collectionVisibility ? 'transparent' : 'black';
   return (
     <div className="sidePanelContainer">
       <div className='sidePanelHeader'>
@@ -21,14 +29,15 @@ export default function SidePanel(props) {
           <br/>
           <br/>
           {contentTypes.map((type) => (
-            <div key={type.id} className='collectionType'onClick={()=>setSelectedType(type)}>
+            <div key={type.id} className='collectionType'onClick={()=>handleCollection(type)}>
               <p>&#x2022; {type.name}</p>
+              <br/>
             </div>
           ))} 
         </div>
         <br/>
         <br/>
-        <h3 className='contentTypeBuilder'>CONTENT TYPE BUILDER</h3>
+        <h3 style={{backgroundColor:{bColor}}} onClick={handleContentTypeBuilder}>CONTENT TYPE BUILDER</h3>
       </div>
     </div>
   );
