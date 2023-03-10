@@ -4,17 +4,26 @@ import './Collections.css';
 import axios from 'axios';
 import editImage from '../../assets/editImage.png';
 import deleteImage from '../../assets/deleteImage.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function Collections(props) {
+  const navigate = useNavigate();
   const { selectedCollection , setEntryModalVisibility, onChange, setContent, setEditCollectionsModalVisibility, setOnChange} = props;
   const [collection, setCollection] = React.useState([]);
   React.useEffect(() => {
     const token = localStorage.getItem('token');
+    if(!token){
+      navigate('/login');
+    }
     axios.get(`http://localhost:8080/collections/${selectedCollection.id}`, { headers: { Authorization: `${token}`}})
       .then((res) => {
         setCollection(res.data);
         console.log(res.data);
       }).catch((err) => {
+        if(err.response.status === 401){
+          navigate('/login');
+          alert('Please login again');
+        }
         console.log(err);
       });
   }, [selectedCollection, onChange]);

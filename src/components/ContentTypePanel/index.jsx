@@ -33,7 +33,7 @@ export default function ContentTypePanel(props) {
       <div className='contentTypes'>
         {filteredContentTypes.map((type) => {
           return(
-            <div key={type.id} className='contentType' onClick={()=>setSelectedType(type)}>
+            <div key={type.id} className='contentType' id={type.id} onClick={()=>setSelectedType(type)}>
               <h2>{type.name}</h2>
               <h2>{type.fields.length}</h2>
             </div>

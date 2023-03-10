@@ -5,16 +5,24 @@ import editPencilImage from '../../assets/editPencilImage.png';
 import deleteImage from '../../assets/deleteImage.png';
 import editImage from '../../assets/editImage.png';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 export default function ContentType(props) {
+  const navigate = useNavigate();
   const { selectedType, setFieldVisibility, onChange,  setOnChange, setSelectedType, setEditTypeNameModalVisibility, setEditFieldVisibility, setField } = props;
   const handleDelete = (name) => {
+    const token = localStorage.getItem('token');
+    if(!token) navigate('/login');
     axios.patch(`http://localhost:8080/contentTypes/${selectedType.id}`, {name}, {headers: {authorization: localStorage.getItem('token')}})
       .then((response) => {
         console.log(response.data);
         setSelectedType(response.data);
         setOnChange(!onChange);
       }).catch((error) => {
+        if(error.response.status === 401) {
+          navigate('/login');
+          alert('You are not authorized to perform this action');
+        }
         console.log(error);
       });
   };

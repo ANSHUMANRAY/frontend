@@ -2,20 +2,28 @@
 import React from 'react';
 import './AddNewEntryModal.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddNewEntryModal(props) {
+  const navigate = useNavigate();
   const { setEntryModalVisibility, selectedCollection, onChange, setOnChange } = props;
   const createCollection = () => {
     const newEntry = {};
     selectedCollection.fields.forEach((field) => {
       newEntry[field] = document.getElementById(field).value;
     });
-    axios.post('http://localhost:8080/collections', {contentTypeId: selectedCollection.id, entry: newEntry}, {headers: {Authorization: localStorage.getItem('token')}})
+    const token = localStorage.getItem('token');
+    if(!token) navigate('/login');
+    axios.post('http://localhost:8080/collections', {contentTypeId: selectedCollection.id, entry: newEntry}, {headers: {Authorization: token}})
       .then((response) => {
         console.log(response.data);
         setOnChange(!onChange);
       })
       .catch((error) => {
+        if(error.response.status === 401) {
+          navigate('/login');
+          alert('You are not authorized to perform this action');
+        }
         console.log(error);
       });
     setEntryModalVisibility(false);
@@ -34,7 +42,7 @@ export default function AddNewEntryModal(props) {
           );
         })}
         <div className='buttons'>
-          <button onClick={()=>setEntryModalVisibility(false)} type="cancel">Cancel</button>
+          <button id='cancelButton' onClick={()=>setEntryModalVisibility(false)} type="cancel">Cancel</button>
           <button onClick={createCollection} type="submit">Add</button>
         </div>
       </div>

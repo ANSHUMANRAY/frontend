@@ -2,12 +2,15 @@
 import React from 'react';
 import './EditFieldModal.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function EditFieldModal(props) {
+  const navigate = useNavigate();
   const { setEditFieldVisibility, setOnChange, onChange, selectedType, setSelectedType, field} = props;
 
   const handleEdit = () => {
     const token = localStorage.getItem('token');
+    if(!token) navigate('/login');
     const name = document.getElementById('name').value;
     axios.patch(`http://localhost:8080/fields/${selectedType.id}`, {newName: name, oldName: field}, {headers: {Authorization: token}})
       .then((response) => {
@@ -16,6 +19,10 @@ export default function EditFieldModal(props) {
         setSelectedType(response.data);
       }
       ).catch((error) => {
+        if(error.response.status === 401) {
+          navigate('/login');
+          alert('You are not authorized to perform this action');
+        }
         console.log(error);
       }
       );
@@ -32,7 +39,7 @@ export default function EditFieldModal(props) {
           <input type="text" name="name" id="name" className='input' defaultValue={field}/>
         </div>
         <div className='editFieldModalButtons'>
-          <button onClick={()=>setEditFieldVisibility(false)} type="cancel">Cancel</button>
+          <button id='cancelButton' onClick={()=>setEditFieldVisibility(false)} type="cancel">Cancel</button>
           <button onClick={handleEdit} type="submit">Create</button>
         </div>
       </div>

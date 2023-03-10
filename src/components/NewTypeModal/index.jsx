@@ -2,11 +2,14 @@
 import React from 'react';
 import './NewTypeModal.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewTypeModal(props) {
+  const navigate = useNavigate();
   const { setOnChange, onChange, setSelectedType, setVisibility } = props;
   const createType = () => {
     const token = localStorage.getItem('token');
+    if (!token) navigate('/login');
     const name = document.getElementById('name').value;
     const fields = [];
     axios.post('http://localhost:8080/contentTypes', { name, fields }, { headers: { Authorization: token } })
@@ -15,6 +18,10 @@ export default function NewTypeModal(props) {
         setOnChange(!onChange);
       })
       .catch((error) => {
+        if (error.response.status === 401) {
+          navigate('/login');
+          alert('You are not authorized to perform this action');
+        }
         console.log(error);
       });
     setVisibility(false);
@@ -29,7 +36,7 @@ export default function NewTypeModal(props) {
           <input type="text" name="name" id="name" className='input'/>
         </div>
         <div className='newTypeModalButtons'>
-          <button onClick={()=>setVisibility(false)} type="cancel">Cancel</button>
+          <button id='cancelButton' onClick={()=>setVisibility(false)} type="cancel">Cancel</button>
           <button onClick={createType} type="submit">Create</button>
         </div>
       </div>

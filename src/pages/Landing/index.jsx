@@ -43,7 +43,7 @@ export default function Landing() {
   console.log('visibility', entryModalVisibility);
   return collectionVisibility ? (
     <div className="collectionContainer">
-      <SidePanel contentTypes={contentTypes} setCollectionVisibility={setCollectionVisibility} collectionVisibility={collectionVisibility} setSelectedCollection={setSelectedCollection}/>
+      <SidePanel contentTypes={contentTypes} setCollectionVisibility={setCollectionVisibility} collectionVisibility={collectionVisibility} setSelectedCollection={setSelectedCollection} selectedCollection={selectedCollection}/>
       <div className="body">
         <Header heading={selectedCollection.name}/>
         <Collections selectedCollection={selectedCollection} setEntryModalVisibility={setEntryModalVisibility} onChange={onChange} content={content} setContent={setContent} setEditCollectionsModalVisibility={setEditCollectionsModalVisibility} setOnChange={setOnChange}/>
@@ -59,12 +59,12 @@ export default function Landing() {
         <div className='bodyContent'>
           <ContentTypePanel contentTypes={contentTypes} setSelectedType={setSelectedType} setVisibility={setVisibility}/>
           <ContentType selectedType={selectedType} setFieldVisibility={setFieldVisibility} onChange={onChange} setOnChange={setOnChange} setSelectedType={setSelectedType} setEditTypeNameModalVisibility={setEditTypeNameModalVisibility} setField={setField} setEditFieldVisibility={setEditFieldVisibility}/>
-          {visibility ? <NewTypeModal setOnChange={setOnChange} onChange={onChange} setSelectedType={setSelectedType} setVisibility={setVisibility}/> : null}
-          {fieldVisibility ? <AddFieldModal setFieldVisibility={setFieldVisibility} setOnChange={setOnChange} onChange={onChange} selectedType={selectedType} setSelectedType={setSelectedType}/> : null}
-          {editTypeNameModalVisibility ? <EditTypeNameModal setEditTypeNameModalVisibility={setEditTypeNameModalVisibility} selectedType={selectedType} setOnChange={setOnChange} onChange={onChange} setSelectedType={setSelectedType}/> : null}
-          {editFieldVisibility ? <EditFieldModal setEditFieldVisibility={setEditFieldVisibility} setOnChange={setOnChange} onChange={onChange} selectedType={selectedType} setSelectedType={setSelectedType} field={field}/> : null}
         </div>
       </div>
+      {visibility ? <NewTypeModal setOnChange={setOnChange} onChange={onChange} setSelectedType={setSelectedType} setVisibility={setVisibility}/> : null}
+      {editTypeNameModalVisibility ? <EditTypeNameModal setEditTypeNameModalVisibility={setEditTypeNameModalVisibility} selectedType={selectedType} setOnChange={setOnChange} onChange={onChange} setSelectedType={setSelectedType}/> : null}
+      {editFieldVisibility ? <EditFieldModal setEditFieldVisibility={setEditFieldVisibility} setOnChange={setOnChange} onChange={onChange} selectedType={selectedType} setSelectedType={setSelectedType} field={field}/> : null}
+      {fieldVisibility ? <AddFieldModal setFieldVisibility={setFieldVisibility} setOnChange={setOnChange} onChange={onChange} selectedType={selectedType} setSelectedType={setSelectedType}/> : null}
     </div>
   );
 }
