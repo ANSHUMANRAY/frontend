@@ -11,6 +11,7 @@ import Header from '../../components/Header';
 import AddNewEntryModal from '../../components/AddNewEntryModal';
 import EditTypeNameModal from '../../components/EditTypeNameModal';
 import EditCollectionsModal from '../../components/EditCollectionsModal';
+import EditFieldModal from '../../components/EditFieldModal';
 
 export default function Landing() {
   const [contentTypes, setContentTypes] = React.useState([]);
@@ -24,6 +25,8 @@ export default function Landing() {
   const [editTypeNameModalVisibility, setEditTypeNameModalVisibility] = React.useState(false);
   const [content, setContent] = React.useState();
   const [editCollectionsModalVisibility, setEditCollectionsModalVisibility] = React.useState(false);
+  const [field, setField] = React.useState();
+  const [editFieldVisibility, setEditFieldVisibility] = React.useState(false);
   React.useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -55,10 +58,11 @@ export default function Landing() {
         <Header heading={'Content Types'}/>
         <div className='bodyContent'>
           <ContentTypePanel contentTypes={contentTypes} setSelectedType={setSelectedType} setVisibility={setVisibility}/>
-          <ContentType selectedType={selectedType} setFieldVisibility={setFieldVisibility} onChange={onChange} setOnChange={setOnChange} setSelectedType={setSelectedType} setEditTypeNameModalVisibility={setEditTypeNameModalVisibility}/>
+          <ContentType selectedType={selectedType} setFieldVisibility={setFieldVisibility} onChange={onChange} setOnChange={setOnChange} setSelectedType={setSelectedType} setEditTypeNameModalVisibility={setEditTypeNameModalVisibility} setField={setField} setEditFieldVisibility={setEditFieldVisibility}/>
           {visibility ? <NewTypeModal setOnChange={setOnChange} onChange={onChange} setSelectedType={setSelectedType} setVisibility={setVisibility}/> : null}
           {fieldVisibility ? <AddFieldModal setFieldVisibility={setFieldVisibility} setOnChange={setOnChange} onChange={onChange} selectedType={selectedType} setSelectedType={setSelectedType}/> : null}
           {editTypeNameModalVisibility ? <EditTypeNameModal setEditTypeNameModalVisibility={setEditTypeNameModalVisibility} selectedType={selectedType} setOnChange={setOnChange} onChange={onChange} setSelectedType={setSelectedType}/> : null}
+          {editFieldVisibility ? <EditFieldModal setEditFieldVisibility={setEditFieldVisibility} setOnChange={setOnChange} onChange={onChange} selectedType={selectedType} setSelectedType={setSelectedType} field={field}/> : null}
         </div>
       </div>
     </div>

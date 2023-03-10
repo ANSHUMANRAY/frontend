@@ -7,7 +7,7 @@ import editImage from '../../assets/editImage.png';
 import axios from 'axios';
 
 export default function ContentType(props) {
-  const { selectedType, setFieldVisibility, onChange,  setOnChange, setSelectedType, setEditTypeNameModalVisibility } = props;
+  const { selectedType, setFieldVisibility, onChange,  setOnChange, setSelectedType, setEditTypeNameModalVisibility, setEditFieldVisibility, setField } = props;
   const handleDelete = (name) => {
     axios.patch(`http://localhost:8080/contentTypes/${selectedType.id}`, {name}, {headers: {authorization: localStorage.getItem('token')}})
       .then((response) => {
@@ -17,6 +17,10 @@ export default function ContentType(props) {
       }).catch((error) => {
         console.log(error);
       });
+  };
+  const handleEdit = (name) => {
+    setField(name);
+    setEditFieldVisibility(true);
   };
   return selectedType ? (
     <div className="contentTypeContainer">
@@ -40,7 +44,7 @@ export default function ContentType(props) {
             <div className='fieldRest'>
               <h2>Text</h2>
               <div className='fieldButtons'>
-                <img src={editImage} alt='editImage' />
+                <img onClick={()=>handleEdit(field)} src={editImage} alt='editImage' />
                 <img onClick={()=>handleDelete(field)} src={deleteImage} alt='deleteImage' />
               </div>
             </div>
